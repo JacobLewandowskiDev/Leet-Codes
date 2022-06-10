@@ -30,7 +30,7 @@ public class RomanInteger {
      */
 
     public static void main(String[] args) {
-        System.out.println(romanToInt("III"));  // Expected 1994
+        System.out.println(romanToInt("MCMXCIV"));  // Expected 1994
     }
 
     public static int romanToInt(String s) {
@@ -45,33 +45,20 @@ public class RomanInteger {
 
         char[] arr = s.toUpperCase().toCharArray();
         int result = 0;
-        int letterValue;
-        int nextLetterValue = 0;
+        int intVal, nextIntVal;
 
         for (int i = 0; i < arr.length; i++) {
+            intVal = romanToIntValues.get(arr[i]);
 
-            letterValue = romanToIntValues.get(arr[i]);
-            if((i+1 != arr.length)) {
-                nextLetterValue = romanToIntValues.get(arr[i + 1]);
-            }
-            else {
-                break;
-            }
+            if (i != arr.length - 1) {
+                nextIntVal = romanToIntValues.get(arr[i + 1]);
 
-            if (letterValue < nextLetterValue) {
-                result =  result + (nextLetterValue - letterValue);
-                System.out.println("Letter: " + letterValue + ", next: " + nextLetterValue + ", result: " + result);
+                if (nextIntVal > intVal) {
+                    intVal = nextIntVal - intVal;
+                    i = i + 1;
+                }
             }
-
-            else if (letterValue >= nextLetterValue) {
-                result = result + letterValue;
-                System.out.println("Letter: " + letterValue + ", next: " + nextLetterValue + ", result: " + result);
-            }
-
-            else {
-                System.out.println("There might be something wrong with your input, please check it");
-                return -1;
-            }
+            result = result + intVal;
         }
         return result;
     }
