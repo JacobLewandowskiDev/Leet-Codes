@@ -21,9 +21,47 @@ public class TwoSum {
 
     public static void main(String[] args) {
 
-        twoSum(new int[] {2,5,5,11}, 10);
+        sumOfTwo(new int[] {2,5,5,11}, 10);
 
     }
+
+    public static int[] sumOfTwo(int[] arr, int target) {
+        int[] result = new int[2];
+
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 1; j < arr.length; j++) {
+                if((arr[i] + arr[j] == target) && i !=j) {
+                    result[0] = i;
+                    result[1] = j;
+                    System.out.println(i + ", " + j);
+                    return result;
+                }
+            }
+        }
+        return null;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     public static int[] twoSum(int[] nums, int target) {
 
